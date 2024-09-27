@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "time-to-pudge"
+version = "0.1.0"
+description = ""
+authors = ["Trubberov <timofey.bokach.d@gmail.com>"]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = {extras = ["all"], version = "^0.115.0"}
+langserve = {extras = ["all"], version = "^0.3.0"}
+pydantic = "^2.9.2"
+langchain = "^0.3.1"
+langsmith = "^0.1.129"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
