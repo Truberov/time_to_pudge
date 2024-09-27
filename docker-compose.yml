@@ -10,3 +10,11 @@ services:
     volumes:
       - ./backend/rutube_bot/:/code/rutube_bot
     restart: always
+
+  tg_bot:
+    build:
+      context: ./tg_bot
+      dockerfile: ./Dockerfile
+    env_file:
+      - .env.prod
+    restart: always
