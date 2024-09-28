@@ -16,3 +16,8 @@ up:
 	@echo "Starting docker-compose..."
 	@docker compose -f docker-compose.yml up -d --build
 	@echo "Docker-compose started successfully."
+
+stop:
+	@echo "Stopping docker-compose..."
+	@docker compose -f docker-compose.yml stop
+	@echo "Docker-compose stopped successfully."

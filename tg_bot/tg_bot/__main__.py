@@ -15,7 +15,14 @@ MICROSERVICE_URL = os.environ.get('RAG_URL')
 dp = Dispatcher()
 
 
-async def get_answer_from_microservice(question):
+async def get_answer_from_microservice(question: str) -> str:
+    """
+    Makes request to microservice to get answer
+    Args:
+        question (str): user question
+    Returns:
+        answer (str): answer of question
+    """
     async with aiohttp.ClientSession() as session:
         async with session.post(MICROSERVICE_URL, json={'question': question}) as response:
             if response.status == 200:
@@ -27,6 +34,9 @@ async def get_answer_from_microservice(question):
 
 @dp.message(CommandStart())
 async def send_welcome(message: types.Message) -> None:
+    """
+    This handler receives messages with `/start` command
+    """
     await message.reply(
         "Привет! Я бот, который может ответить на ваши вопросы. \
         Просто напишите свой вопрос, и я постараюсь на него ответить.")
@@ -34,6 +44,9 @@ async def send_welcome(message: types.Message) -> None:
 
 @dp.message()
 async def answer_question(message: types.Message) -> None:
+    """
+    Handler will answer the user message with answer from RAG service
+    """
     question = message.text
     answer = await get_answer_from_microservice(question)
     await message.answer(answer)
