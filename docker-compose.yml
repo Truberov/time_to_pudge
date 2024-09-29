@@ -1,3 +1,5 @@
+version: '3'
+
 services:
   backend:
     build:
@@ -11,6 +13,8 @@ services:
       - ./backend/rutube_bot/:/code/rutube_bot
       - ./backend/chroma_data:/code/chroma_data
     restart: always
+    networks:
+      - backend-redis
 
   tg_bot:
     build:
@@ -19,19 +23,23 @@ services:
     env_file:
       - .env.prod
     restart: always
+    networks:
+      - default
 
   redis:
-    image: redis:latest
+    image: redis/redis-stack:latest
     ports:
-      - 6379:6379
-      - 8001:8001
+      - "6379:6379"
+      - "8001:8001"
     healthcheck:
       test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
-    environment:
-      - REDIS_PASSWORD=75H0I1hLnW
-      - REDIS_USER=airina
-      - REDIS_USER_PASSWORD=75H0I1hLnW
-    command: >
-      sh -c 'redis-server --appendonly yes --requirepass 75H0I1hLnW'
     volumes:
       - ./redis_data:/data
+    networks:
+      - backend-redis
+
+networks:
+  backend-redis:
+    internal: true
+  default:
+    driver: bridge
