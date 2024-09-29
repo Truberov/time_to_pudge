@@ -32,6 +32,6 @@ services:
       - REDIS_USER=airina
       - REDIS_USER_PASSWORD=75H0I1hLnW
     command: >
-      sh -c 'redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}'
+      sh -c 'redis-server --appendonly yes --requirepass 75H0I1hLnW'
     volumes:
       - ./redis_data:/data
