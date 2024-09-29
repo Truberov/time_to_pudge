@@ -9,7 +9,7 @@ services:
       - "8080:8080"
     volumes:
       - ./backend/rutube_bot/:/code/rutube_bot
-      - ./backend/chroma_data/:/code/chroma_data
+      - ./backend/chroma_data:/code/chroma_data
     restart: always
 
   tg_bot:
