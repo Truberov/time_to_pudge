@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   backend:
     build:
@@ -15,6 +13,7 @@ services:
     restart: always
     networks:
       - backend-redis
+      - internet
 
   tg_bot:
     build:
@@ -24,7 +23,7 @@ services:
       - .env.prod
     restart: always
     networks:
-      - default
+      - internet
 
   redis:
     image: redis/redis-stack:latest
@@ -41,5 +40,5 @@ services:
 networks:
   backend-redis:
     internal: true
-  default:
+  internet:
     driver: bridge
