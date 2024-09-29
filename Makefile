@@ -7,8 +7,8 @@ env:
 	@if [ -f .env.prod ]; then \
 		echo ".env.prod file already exists. Skipping creation."; \
 	else \
-		echo "Creating .env.prod file from .env.example..."; \
-		cp .env.example .env.prod; \
+		echo "Creating .env.prod file from .env_example..."; \
+		cp .env_example .env.prod; \
 		echo ".env.prod file created successfully."; \
 	fi
 

@@ -9,6 +9,7 @@ services:
       - "8080:8080"
     volumes:
       - ./backend/rutube_bot/:/code/rutube_bot
+      - ./backend/chroma_data/:/code/chroma_data
     restart: always
 
   tg_bot:
@@ -18,3 +19,13 @@ services:
     env_file:
       - .env.prod
     restart: always
+
+  redis:
+    image: redis/redis-stack:latest
+    ports:
+      - 6379:6379
+      - 8001:8001
+    healthcheck:
+      test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
+    volumes:
+      - ./redis_data:/data
