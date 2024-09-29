@@ -58,9 +58,8 @@ def format_answer(response: dict) -> str:
         class_2 = class_2.replace(char, f'\\{char}')
 
     formatted_answer = (
-        f"{bold('Ответ:')}\n{answer}\n\n"
-        f"{underline('Значения классификаторов:')}\n"
-        f"{code(class_1)} \\- {code(class_2)}"
+        f"{answer}\n\n"
+        f"{code(class_1.lower())} {code(class_2.lower())}"
     )
 
     return formatted_answer
