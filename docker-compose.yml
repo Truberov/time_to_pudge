@@ -34,8 +34,13 @@ services:
     command: >
       sh -c '
         mkdir -p /usr/local/etc/redis &&
+        echo "bind 0.0.0.0" > /usr/local/etc/redis/redis.conf &&
         echo "requirepass 75H0I1hLnW" >> /usr/local/etc/redis/redis.conf &&
-        echo "user airina on >75H0I1hLnW ~* +@all" >> /usr/local/etc/redis/users.acl
+        echo "appendonly yes" >> /usr/local/etc/redis/redis.conf &&
+        echo "appendfsync everysec" >> /usr/local/etc/redis/redis.conf &&
+        echo "user default on nopass ~* +@all" > /usr/local/etc/redis/users.acl &&
+        echo "user airina on >75H0I1hLnW ~* +@all" >> /usr/local/etc/redis/users.acl &&
+        redis-server /usr/local/etc/redis/redis.conf --aclfile /usr/local/etc/redis/users.acl
       '
     volumes:
       - ./redis_data:/data
