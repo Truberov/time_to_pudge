@@ -27,5 +27,8 @@ services:
       - 8001:8001
     healthcheck:
       test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
+    environment:
+      - REDIS_PASSWORD=75H0I1hLnW
+      - REDIS_USER=airina
     volumes:
       - ./redis_data:/data
