@@ -30,5 +30,6 @@ services:
     environment:
       - REDIS_PASSWORD=75H0I1hLnW
       - REDIS_USER=airina
+      - REDIS_USER_PASSWORD=75H0I1hLnW
     volumes:
       - ./redis_data:/data
