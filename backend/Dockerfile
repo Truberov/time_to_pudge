@@ -2,7 +2,7 @@ FROM python:3.10-buster
 
 WORKDIR /code
 
-RUN pip install poetry
+RUN pip install poetry pysqlite3-binary
 
 RUN poetry config virtualenvs.create false
 
