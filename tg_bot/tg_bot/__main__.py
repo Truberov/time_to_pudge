@@ -51,11 +51,11 @@ def format_answer(response: dict) -> str:
     class_2 = response.get('class_2', '')
 
     # Экранируем специальные символы Markdown
-    # special_chars = ['_', '*', '[', ']', '(', ')', '~', '`', '>', '#', '+', '-', '=', '|', '{', '}', '.', '!']
-    # for char in special_chars:
-    #     answer = answer.replace(char, f'\\{char}')
-    #     class_1 = class_1.replace(char, f'\\{char}')
-    #     class_2 = class_2.replace(char, f'\\{char}')
+    special_chars = ['_', '*', '[', ']', '(', ')', '~', '`', '>', '#', '+', '-', '=', '|', '{', '}', '.', '!']
+    for char in special_chars:
+        answer = answer.replace(char, f'\\{char}')
+        class_1 = class_1.replace(char, f'\\{char}')
+        class_2 = class_2.replace(char, f'\\{char}')
 
     formatted_answer = (
         f"{answer}\n\n"
